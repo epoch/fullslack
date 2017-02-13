@@ -1,0 +1,40 @@
+/* element select */
+body {
+  /* rules */
+  background-color: mistyrose;
+}
+
+h2 {
+  background-color: tomato;
+  color: linen;
+}
+
+/* id selector */
+#main-heading {
+  text-align: center;
+}
+
+/* class selector */
+.desire {
+  font-size: 20px;
+}
+
+.warning {
+  color: lime;
+}
+
+/* em tag plus desire class */
+em.desire {
+  font-size: 30px;
+}
+
+/* paragraphs within article descendant selector*/
+/*article p {
+  background-color: peru;
+}*/
+
+/* direct child */
+article > p {
+  background-color: pink;
+}
+
