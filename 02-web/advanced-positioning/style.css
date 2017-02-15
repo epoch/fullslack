@@ -1,0 +1,64 @@
+#special {
+  background-color: plum;
+  /* opacity: 0;
+     display: none;
+     visibility: hidden;
+     */
+  display: none;
+}
+
+#less-special {
+  background-color: pink;
+}
+
+nav li {
+  list-style: none;
+  display: inline-block;
+  width: 80px;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  border: 1px solid blue;
+  margin-bottom: 5px;
+}
+
+.position-static {
+  position: static;
+}
+
+.position-fixed {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: -10;
+}
+
+.position-relative {
+  position: relative;
+  left: 40px;
+  background-color: pink;
+}
+
+.position-absolute {
+  position: absolute;
+  left: 20px;
+  background-color: cyan;
+}
+
+.abs {
+  background-color: yellow;
+  position: absolute;
+  top: 0;
+  
+}
+
+.test {
+  background-color: pink;
+  position: absolute;
+  left: 20px;
+}
+
+
+

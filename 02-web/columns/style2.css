@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.wrapper div {
+  width: 50%;
+  display: inline-block;
+  border: 1px solid red;
+}
+
+.float-wrapper div {
+  float: left;
+  width: 50%;
+}
