@@ -1,0 +1,14 @@
+body {
+  font-family: 'Indie Flower', cursive;
+}
+
+ul {
+  /*padding: 0;*/
+  margin: 0;
+  list-style: none;
+}
+
+.completed {
+  color: gray;
+  text-decoration: line-through;
+}
