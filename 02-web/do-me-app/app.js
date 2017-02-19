@@ -34,9 +34,6 @@ list.addEventListener('click', function(event) {
     } else {
       event.target.className = 'completed'
     }
-
-
-
   }
 
 });
