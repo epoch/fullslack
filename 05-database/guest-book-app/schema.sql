@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS comments;
+
+CREATE TABLE comments(
+  id SERIAL4 PRIMARY KEY,
+  name VARCHAR(255),
+  body TEXT,
+  url VARCHAR(255)
+);
