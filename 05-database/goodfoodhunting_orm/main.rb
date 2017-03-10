@@ -4,13 +4,24 @@ require 'sinatra/reloader'
 require 'pg'
 require_relative 'database_config'
 require_relative 'models/dish'
-# router
+require_relative 'models/user'
 
-def run_sql(sql)
-  conn = PG.connect(dbname: 'goodfoodhunting')
-  result = conn.exec(sql)  
-  conn.close
-  return result   
+enable :sessions
+
+helpers do
+
+  def current_user
+    User.find_by(id: session[:user_id])
+  end
+
+  def logged_in? # should return a boolean
+    !!current_user
+  end
+
+end
+
+after do
+  ActiveRecord::Base.connection.close
 end
 
 get '/' do
@@ -29,35 +40,68 @@ post '/dishes' do
   dish = Dish.new
   dish.name = params[:name]
   dish.image_url = params[:image_url]
-  dish.save
 
-  # sql = "INSERT INTO dishes (name, image_url) VALUES ('#{ params[:name] }', '#{ params[:image_url] }');"
-  # run_sql(sql)
-  redirect '/'
+  if dish.save
+    redirect '/'
+  else
+    erb :new
+  end
 end
 
 # localhost:4567/dishes?id=7
 get '/dishes/:id' do
-  sql = "SELECT * FROM dishes where id = #{ params[:id] };"
-  @dish = run_sql(sql)[0] 
+  @dish = Dish.find(params[:id])
   erb :show
 end
 
 delete '/dishes/:id' do
-  sql = "DELETE FROM dishes WHERE id = #{params[:id]};"
-  run_sql(sql)
+  dish = Dish.find(params[:id])
+  dish.destroy
+
   redirect '/'  
 end
 
 get '/dishes/:id/edit' do
-  @dish = run_sql("SELECT * FROM dishes WHERE id = #{params[:id]}")[0]
+  redirect '/session/new' if !logged_in?
+
+  @dish = Dish.find(params[:id])
   erb :edit
 end
 
 put '/dishes/:id' do
-  run_sql("UPDATE dishes SET name = '#{params[:name]}', image_url = '#{params[:image_url]}' WHERE id = #{params[:id]};")
+  redirect '/session/new' if !logged_in?
+  
+  dish = Dish.find(params[:id])
+  dish.name = params[:name]
+  dish.image_url = params[:image_url]
+  dish.save
   redirect "/dishes/#{params[:id]}"
 end
+
+get '/session/new' do
+  erb :login
+end
+
+post '/session' do
+  user = User.find_by(email: params[:email])
+  if user && user.authenticate(params[:password])
+    # you are ok, let me create a session for you
+    session[:user_id] = user.id
+    redirect '/'
+  else
+    # who are you???
+    erb :login
+  end
+end
+
+# logout
+delete '/session' do
+  session[:user_id] = nil
+  redirect '/session/new'
+end
+
+
+
 
 
 

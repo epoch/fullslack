@@ -1,8 +1,10 @@
-<h1><%= @dish['name'] %></h1>
+<h1><%= @dish.name %></h1>
 
-<form action="/dishes/<%= @dish['id'] %>" method="post">
+<form action="/dishes/<%= @dish.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
   <button>delete</button>
 </form>
 
-<a href="/dishes/<%= @dish['id'] %>/edit">edit</a>
+<% if logged_in? %>
+<a href="/dishes/<%= @dish.id %>/edit">edit</a>
+<% end %>
