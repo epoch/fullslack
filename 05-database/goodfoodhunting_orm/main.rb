@@ -5,6 +5,7 @@ require 'pg'
 require_relative 'database_config'
 require_relative 'models/dish'
 require_relative 'models/user'
+require_relative 'models/comment'
 
 enable :sessions
 
@@ -51,6 +52,7 @@ end
 # localhost:4567/dishes?id=7
 get '/dishes/:id' do
   @dish = Dish.find(params[:id])
+  @comments = @dish.comments
   erb :show
 end
 
@@ -70,12 +72,23 @@ end
 
 put '/dishes/:id' do
   redirect '/session/new' if !logged_in?
-  
+
   dish = Dish.find(params[:id])
   dish.name = params[:name]
   dish.image_url = params[:image_url]
   dish.save
   redirect "/dishes/#{params[:id]}"
+end
+
+post '/comments' do
+  comment = Comment.new
+  comment.body = params[:body]
+  comment.dish_id = params[:dish_id]
+  if comment.save
+    redirect "/dishes/#{ params[:dish_id] }"
+  else
+    erb :show
+  end
 end
 
 get '/session/new' do

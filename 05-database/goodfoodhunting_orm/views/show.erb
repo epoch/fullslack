@@ -8,3 +8,14 @@
 <% if logged_in? %>
 <a href="/dishes/<%= @dish.id %>/edit">edit</a>
 <% end %>
+
+<% @comments.each do |comment| %>
+  <p><%= comment.body %></p>
+  <hr>
+<% end %>
+
+<form action="/comments" method="post">
+  <input type="hidden" name="dish_id" value="<%= @dish.id %>">
+  <textarea name="body"></textarea>
+  <button>post</button>
+</form>
