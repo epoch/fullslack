@@ -1,0 +1,15 @@
+<% @dishes.each do |dish| %>
+
+  <p>
+    <%= dish.name %>
+
+    <form action="/dishes" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="dish_id" value="<%= dish.id %>">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+      <button>delete</button>
+    </form>   
+  </p>
+
+<% end %>
