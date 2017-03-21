@@ -1,0 +1,19 @@
+.right {
+  float: right;
+}
+
+.content {
+  padding: 0.8em;
+}
+
+header {
+  line-height: 2em;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+}
+

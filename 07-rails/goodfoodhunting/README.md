@@ -1,24 +1,14 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- login system
+- liking a dish
 
-Things you may want to cover:
+- best practices for styling as starting point
+- tricks with rails
+- database integrity
 
-* Ruby version
+---
 
-* System dependencies
+- model generator / resource generator
+- tooling 
+- association in activerecord
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

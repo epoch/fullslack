@@ -1,0 +1,8 @@
+<%= @dish.name %>
+
+<%= @dish.likes.count %>
+
+<%= form_tag '/likes', method: 'post' do %>
+  <input type="hidden" name="dish_id" value="<%= @dish.id %>">
+  <button>like</button>
+<% end %>
