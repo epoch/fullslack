@@ -1,5 +1,45 @@
-<h2>list</h2>
-
+<div id="some-div">
+  <h2 id="title">list</h2>
+</div>
 <% @dishes.each do |dish| %>
   <%= render partial: 'dish_card', locals: { dish: dish } %>
 <% end %>
+
+
+<script>
+  
+  var $stars = $('.star');
+
+  $stars.on('click', function(event) {
+
+    var $myTarget = $(event.target)
+      .closest('.ui-card') // up
+      .find('.likes-count') // down
+
+    var oldText = $myTarget.text();
+    var oldCount = Number(oldText)
+    var newCount = oldCount + 1;
+
+    $myTarget.text(newCount);
+
+  });
+
+
+  // $.getJSON('', function() {
+
+  // })
+/*
+  $.ajax({
+    url: '/api/likes',
+    data: { dish_id: 5 },
+    method: 'post'
+  }).done(function(data) {
+
+    console.log(data);
+
+  });
+*/
+ 
+
+
+</script>

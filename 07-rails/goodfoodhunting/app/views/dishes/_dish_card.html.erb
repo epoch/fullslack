@@ -6,6 +6,7 @@
 
   <div class="image">
     <img src="<%= dish.image_url %>" alt="">
+    <span class="star">&#9733;</span>
   </div>
 
   <div class="content">
@@ -14,7 +15,7 @@
   </div>
 
   <div class="content">
-    <span class="right"><%= dish.likes.count %></span>
+    <span class="likes-count right"><%= dish.likes.count %></span>
     <span>
       <%= form_tag '/likes', method: 'post' do %>
         <input type="hidden" name="dish_id" value="<%= dish.id %>">
