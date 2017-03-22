@@ -9,6 +9,7 @@
   </head>
 
   <body>
+    <%= session[:user_id] %>
     <%= form_tag '/session', method: 'delete' do %>
       <button>logout</button>
     <% end %>

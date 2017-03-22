@@ -1,0 +1,25 @@
+<div class="ui-card">
+  <header class="content">
+    <span class="right">13h</span>
+    <img class="avatar" src="https://placeholdit.imgix.net/~text?txtsize=75&txt=800%C3%97800&w=800&h=800" alt=""> DT
+  </header>
+
+  <div class="image">
+    <img src="<%= dish.image_url %>" alt="">
+  </div>
+
+  <div class="content">
+    <h2><%= dish.name %></h2>
+    <h4>at GA</h4>
+  </div>
+
+  <div class="content">
+    <span class="right"><%= dish.likes.count %></span>
+    <span>
+      <%= form_tag '/likes', method: 'post' do %>
+        <input type="hidden" name="dish_id" value="<%= dish.id %>">
+        <button>like</button>
+      <% end %>
+    </span>
+  </div>
+</div>

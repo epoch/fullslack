@@ -5,7 +5,7 @@ class LikesController < ApplicationController
     like.dish_id = params[:dish_id]
     like.user_id = session[:user_id]
     like.save
-    redirect_to "/dishes/#{like.dish_id}"
+    redirect_to "/"
   end
 
 end

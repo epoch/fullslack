@@ -17,3 +17,10 @@ header {
   border-radius: 50%;
 }
 
+.ui-card {
+  float: left;
+  width: 23%;
+  margin: 1%;
+  background-color: mistyrose;
+}
+
