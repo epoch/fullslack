@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/dishes/:id', to: 'dishes#show'
 
   post '/api/likes', to: 'likes#api_create'
+  get '/api/dishes', to: 'api/dishes#index'
 
   # get '/', to: 'dishes#index'
   root 'dishes#index'

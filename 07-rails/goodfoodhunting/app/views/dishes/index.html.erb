@@ -12,15 +12,28 @@
 
   $stars.on('click', function(event) {
 
-    var $myTarget = $(event.target)
-      .closest('.ui-card') // up
-      .find('.likes-count') // down
+    var $card = $(event.target).closest('.ui-card');
+    var dishId = $card.attr('data-id');
 
-    var oldText = $myTarget.text();
-    var oldCount = Number(oldText)
-    var newCount = oldCount + 1;
+    $.ajax({
+      url: '/api/likes',
+      method: 'post',
+      data: { dish_id: dishId }
+    }).done(function(data) {
+      // update the like count span relative to where
+      // we are
+      $card.find('.likes-count').text(data.likes_count) 
+    })
 
-    $myTarget.text(newCount);
+    // var $myTarget = $(event.target)
+    //   .closest('.ui-card') // up
+    //   .find('.likes-count') // down
+
+    // var oldText = $myTarget.text();
+    // var oldCount = Number(oldText)
+    // var newCount = oldCount + 1;
+
+    // $myTarget.text(newCount);
 
   });
 
