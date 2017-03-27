@@ -1,0 +1,16 @@
+.square {
+  border: 1px solid black;
+  width: 10px;
+  height: 10px;
+  float: left;
+}
+
+.canvas {
+}
+
+.brush {
+  width: 10px;
+  height: 10px;
+  border: 1px solid black;
+  display: inline-block;
+}
