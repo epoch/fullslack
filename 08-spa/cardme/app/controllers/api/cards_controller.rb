@@ -6,7 +6,14 @@ class Api::CardsController < ApplicationController
   end
 
   def create
-    render json: { hi: 'there' }
+    card = Card.new
+    card.name = params[:name]
+    card.image_url = params[:image_url]
+    if card.save
+      render json: card
+    else
+      render json: card.errors
+    end
   end
 
   def destroy
