@@ -1,0 +1,75 @@
+<div class="wrapper">
+</div>
+
+<form class="new-card-form" action="">
+  <label for="">name</label>
+  <input type="text" class="new-card-name">
+  <label for="">image_url</label>
+  <input type="text" class="new-card-image_url">
+  <button class="new-card-action">create card</button>
+</form>
+
+<script id="card-template" type="text/x-handlebars-template">
+  <div class="card" data-id="{{ id }}">
+    <header class="content">
+      <div>{{ name }}</div>
+    </header>
+    <div class="image">
+      <img src="{{ image_url }}" alt="">
+    </div>
+    <footer class="content">
+      <div><span class="delete-action">delete</span></div>
+    </footer>
+  </div> 
+</script> 
+
+<script>
+
+  $('.new-card-form').on('submit', function(event) {
+    event.preventDefault();
+
+    $.ajax({
+      url: '/api/cards',
+      method: 'post',
+      data: { 
+        name: $('.new-card-name').val(),  
+        image_url: $('.new-card-image_url').val()
+      }
+    }).done(function() {
+
+    });
+
+  });
+
+  $.ajax({
+    url: '/api/cards'
+  }).done(function(res) {
+    res.forEach(function(card) {
+
+      var source = $('#card-template').html(); // grab the template string
+      var template = Handlebars.compile( source ); // turn templete string into a function
+      var html = template( card ); // html with template & data merged together
+      $('.wrapper').append(html);
+    });
+
+    $('.delete-action').on('click', function(event) {
+      console.log('deleting');
+
+      var id = $(event.target).closest('.card').data('id');
+
+      $.ajax({
+        url: '/api/cards/' + id,
+        method: 'delete'
+      }).done(function() {
+        // remove the card from the dom
+        $(event.target).closest('.card').fadeOut(500, function() {
+          $(event.target).closest('.card').remove();
+        })  
+      }); 
+    }); // delete-action
+
+  }); // ajax
+
+
+
+</script>

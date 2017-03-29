@@ -1,0 +1,66 @@
+.card {
+  background-color: mistyrose;
+  padding: 10px 0;
+  flex-grow: 1;
+}
+
+.content {
+  padding: 5px;
+}
+
+.wrapper {
+  display: flex;
+  background-color: linen;
+
+}
+
+.card img {
+  width: 100%;
+}
+
+.card .image {
+  background-color: linen;
+  margin: 0 auto;
+}
+
+.card header {
+  text-align: center;
+}
+
+.card footer {
+  text-align: center;
+}
+
+.card .delete-action {
+  cursor: pointer;
+}
+
+/*
+.barby {
+  background-color: brown;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.barby > div {
+  height: 100px;
+}
+
+.chicken {
+  background-color: pink;
+  order: 2;
+}
+
+.pineapple {
+  background-color: yellow;
+}
+
+.tomato {
+  background-color: tomato;
+}
+*/
+
+
+
